@@ -3,6 +3,8 @@ package eu.telecomnancy.labfx;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -14,21 +16,26 @@ public class Main extends Application {
         Application.launch(args);
     }
 
+    int timesButtonClicked;
+
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setTitle("JavaFx Demo");
+        timesButtonClicked = 0;
 
-        Button button = new Button("Click Me!");
+        primaryStage.setTitle("TP0");
 
-        ImageView imageView = new ImageView(getClass().getResource("/eu/telecomnancy/labfx/images/kawai.png").toExternalForm());
-        button.setGraphic(imageView);
-
+        Button button = new Button("Jouer");
         button.setOnAction(e -> {
-            System.out.println("Bye!");
-            Platform.exit();
+            System.out.println("Hello! times button clicked: " + timesButtonClicked++);
         });
 
-        Scene scene = new Scene(button, 400, 400);
+        AnchorPane anchor = new AnchorPane();
+        AnchorPane.setBottomAnchor(button, 0.);
+        AnchorPane.setLeftAnchor(button, 0.);
+
+        anchor.getChildren().add(button);
+
+        Scene scene = new Scene(anchor, 400, 400);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
