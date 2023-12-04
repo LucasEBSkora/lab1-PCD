@@ -1,14 +1,10 @@
 package eu.telecomnancy.labfx;
 
-import java.io.IOException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.application.Platform;
 
 public class Main extends Application {
 
@@ -19,15 +15,13 @@ public class Main extends Application {
     int timesButtonClicked;
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) {
         timesButtonClicked = 0;
 
         primaryStage.setTitle("TP0");
 
         Button button = new Button("Jouer");
-        button.setOnAction(e -> {
-            System.out.println("Hello! times button clicked: " + timesButtonClicked++);
-        });
+        button.setOnAction(e -> System.out.println("Hello! times button clicked: " + timesButtonClicked++));
 
         AnchorPane anchor = new AnchorPane();
         AnchorPane.setBottomAnchor(button, 0.);

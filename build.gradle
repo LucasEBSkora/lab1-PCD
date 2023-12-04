@@ -6,7 +6,7 @@ plugins {
   id 'org.beryx.jlink' version '2.25.0'
 }
 
-group 'eu.telecomnancy.labfx'
+group 'eu.telecomnancy'
 version '1.0-SNAPSHOT'
 
 repositories {
