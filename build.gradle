@@ -22,8 +22,8 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-  mainModule = 'eu.telecomnancy.labfx'
-  mainClass = 'eu.telecomnancy.labfx.Main'
+  mainModule = 'eu.telecomnancy.tp'
+  mainClass = 'eu.telecomnancy.tp.Main'
 }
 
 javafx {
