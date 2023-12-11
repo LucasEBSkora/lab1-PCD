@@ -5,6 +5,7 @@ import javafx.scene.layout.GridPane;
 
 public class VueLettres extends GridPane {
     BoutonBoggle[][] boutons;
+
     public VueLettres(Boggle model, int taille) {
         boutons = new BoutonBoggle[taille][taille];
         for (int ligne = 0; ligne < taille; ligne++) {

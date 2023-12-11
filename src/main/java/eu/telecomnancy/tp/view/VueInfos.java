@@ -8,6 +8,7 @@ public class VueInfos extends TilePane {
 
     final Label motCourant;
     final Label score;
+
     public VueInfos(Boggle boggle) {
 
         motCourant = new Label();

@@ -8,12 +8,14 @@ public class BoutonBoggle extends Button {
     final int colomne;
 
     final Boggle model;
+
     public BoutonBoggle(int ligne, int colomne, Boggle model) {
         this.ligne = ligne;
         this.colomne = colomne;
         this.model = model;
         miseAJourTexte();
         setOnAction(e -> this.model.ajouterLettre(this.ligne, this.colomne));
+        model.ajouterEcouterRelance(this::miseAJourTexte);
     }
 
     public void miseAJourTexte() {

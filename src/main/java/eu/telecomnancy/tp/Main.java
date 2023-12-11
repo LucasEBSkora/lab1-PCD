@@ -10,11 +10,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class Main extends Application {
+    public static void main(String[] args) {
+        launch();
+    }
+
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         BorderPane root = new BorderPane();
         Boggle model = new Boggle(7);
         VueInfos vueInfos = new VueInfos(model);
@@ -29,9 +31,5 @@ public class Main extends Application {
         stage.setTitle("Boggle");
         stage.setScene(scene);
         stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 }

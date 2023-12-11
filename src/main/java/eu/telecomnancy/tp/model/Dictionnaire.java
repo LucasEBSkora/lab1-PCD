@@ -6,35 +6,36 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Dictionnaire {
-    private static Dictionnaire instance = new Dictionnaire("/eu/telecomnancy/tp/ressources/dico.txt") ;
-    private ArrayList<String> dico ;
+    private static final Dictionnaire instance = new Dictionnaire("/eu/telecomnancy/tp/dico.txt");
+    private final ArrayList<String> dico;
 
     /**
      * Créer un dictionnaire sur la base d'un fichier texte
+     *
      * @param s nom de fichier
      */
-    private  Dictionnaire(String s) {
-        this.dico = new ArrayList<String>(34000) ;
+    private Dictionnaire(String s) {
+        this.dico = new ArrayList<>(34000);
         InputStream file = getClass().getResourceAsStream(s);
         assert file != null;
         Scanner sc = new Scanner(file);
         while (sc.hasNext())
-                    this.dico.add(sc.next());
+            this.dico.add(sc.next());
     }
 
     /**
      * @return dictionnaire de la langue française
      */
     public static Dictionnaire getInstance() {
-        return instance ;
+        return instance;
     }
 
     /**
-     * @param s
+     * @param s mot
      * @return vrai si le mot s est dans le dictionnaire
      */
     public boolean contient(String s) {
-        return dico.contains(s.toLowerCase()) ;
+        return dico.contains(s.toLowerCase());
     }
 
 }
