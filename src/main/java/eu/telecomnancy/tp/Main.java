@@ -1,6 +1,7 @@
 package eu.telecomnancy.tp;
 
 import eu.telecomnancy.tp.model.Boggle;
+import eu.telecomnancy.tp.presenter.Presenter;
 import eu.telecomnancy.tp.view.MenuBoggle;
 import eu.telecomnancy.tp.view.PanneauControle;
 import eu.telecomnancy.tp.view.VueInfos;
@@ -19,11 +20,12 @@ public class Main extends Application {
     public void start(Stage stage) {
         BorderPane root = new BorderPane();
         Boggle model = new Boggle(7);
-        VueInfos vueInfos = new VueInfos(model);
+        Presenter presenter = new Presenter(model);
+        VueInfos vueInfos = new VueInfos(presenter);
         root.setBottom(vueInfos);
-        VueLettres vueLettres = new VueLettres(model, 7);
+        VueLettres vueLettres = new VueLettres(presenter, 7);
         root.setCenter(vueLettres);
-        PanneauControle panneauControle = new PanneauControle(model);
+        PanneauControle panneauControle = new PanneauControle(presenter);
         root.setRight(panneauControle);
         MenuBoggle menu = new MenuBoggle();
         root.setTop(menu);

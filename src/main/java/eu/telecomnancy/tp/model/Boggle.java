@@ -1,24 +1,19 @@
 package eu.telecomnancy.tp.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import eu.telecomnancy.tp.presenter.Presenter;
+
 import java.util.Random;
-import java.util.function.Consumer;
 
 public class Boggle {
 
     private static final char[] voyelles = {'A', 'E', 'I', 'O', 'U', 'Y'};
     private static final char[] consonnes = {'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z'};
-    private final List<Consumer<Integer>> ecouterScore;
-    private final List<Consumer<String>> ecouterMotCourant;
-
-    private final List<Runnable> ecouterRelance;
     private final char[][] lettres;
+    private final int taille;
     private StringBuilder mot;
     private int score = 0;
     private int ligneChoisie, colonneChoisie;  // dernière case choisie
-
-    private final int taille;
+    private Presenter presenter;
 
     /**
      * Des voyelles sur les lignes impaires ; des consonnes sur les lignes paires
@@ -30,10 +25,11 @@ public class Boggle {
         assert (taille > 1) : "Trop petit";
         this.taille = taille;
         this.lettres = new char[taille][taille];
-        this.ecouterScore = new ArrayList<>();
-        this.ecouterMotCourant = new ArrayList<>();
-        this.ecouterRelance = new ArrayList<>();
         relancer();
+    }
+
+    public void setPresenter(Presenter presenter) {
+        this.presenter = presenter;
     }
 
     public void relancer() {
@@ -50,7 +46,8 @@ public class Boggle {
         this.ligneChoisie = -1;
         this.colonneChoisie = -1;
         this.score = 0;
-        notifierEcouterRelance();
+        if (presenter != null)
+            presenter.notifierEcouterRelance();
     }
 
     /**
@@ -116,19 +113,7 @@ public class Boggle {
         this.mot = new StringBuilder();
         this.ligneChoisie = -1;
         this.colonneChoisie = -1;
-        notifierEcouterScore();
-    }
-
-    private void notifierEcouterScore() {
-        for (Consumer<Integer> e : ecouterScore) {
-            e.accept(this.score);
-        }
-    }
-
-    private void notifierEcouterRelance() {
-        for (Runnable e : ecouterRelance) {
-            e.run();
-        }
+        presenter.notifierEcouterScore(this.score);
     }
 
 
@@ -139,15 +124,8 @@ public class Boggle {
         this.mot = new StringBuilder();
         this.ligneChoisie = -1;
         this.colonneChoisie = -1;
-        notifierEcoutersMotCourant();
+        presenter.notifierEcoutersMotCourant("");
     }
-
-    private void notifierEcoutersMotCourant() {
-        for (Consumer<String> e : ecouterMotCourant) {
-            e.accept(this.getMotChoisi());
-        }
-    }
-
 
     /**
      * La lettre en case lig, col a été choisie
@@ -161,21 +139,7 @@ public class Boggle {
             this.mot.append(this.getLettre(lig, col));
             this.ligneChoisie = lig;
             this.colonneChoisie = col;
-            notifierEcoutersMotCourant();
+            presenter.notifierEcoutersMotCourant(this.getMotChoisi());
         }
-    }
-
-
-    public void ajouterEcouterScore(Consumer<Integer> o) {
-        ecouterScore.add(o);
-    }
-
-    public void ajouterEcouterMot(Consumer<String> o) {
-        ecouterMotCourant.add(o);
-    }
-
-
-    public void ajouterEcouterRelance(Runnable o) {
-        ecouterRelance.add(o);
     }
 }

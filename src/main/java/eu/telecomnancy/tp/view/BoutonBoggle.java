@@ -1,24 +1,24 @@
 package eu.telecomnancy.tp.view;
 
-import eu.telecomnancy.tp.model.Boggle;
+import eu.telecomnancy.tp.presenter.Presenter;
 import javafx.scene.control.Button;
 
 public class BoutonBoggle extends Button {
-    final int ligne;
-    final int colomne;
+    public final int ligne;
+    public final int colomne;
 
-    final Boggle model;
+    final Presenter presenter;
 
-    public BoutonBoggle(int ligne, int colomne, Boggle model) {
+    public BoutonBoggle(int ligne, int colomne, Presenter presenter) {
         this.ligne = ligne;
         this.colomne = colomne;
-        this.model = model;
+        this.presenter = presenter;
         miseAJourTexte();
-        setOnAction(e -> this.model.ajouterLettre(this.ligne, this.colomne));
-        model.ajouterEcouterRelance(this::miseAJourTexte);
+        setOnAction(e -> this.presenter.ajouterLettreDuBouton(this));
+        presenter.ajouterEcouterRelance(this::miseAJourTexte);
     }
 
     public void miseAJourTexte() {
-        this.setText(String.valueOf(model.getLettre(this.ligne, this.colomne)));
+        this.setText(String.valueOf(presenter.getLettre(this)));
     }
 }

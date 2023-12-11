@@ -1,6 +1,6 @@
 package eu.telecomnancy.tp.view;
 
-import eu.telecomnancy.tp.model.Boggle;
+import eu.telecomnancy.tp.presenter.Presenter;
 import javafx.scene.control.Label;
 import javafx.scene.layout.TilePane;
 
@@ -9,7 +9,7 @@ public class VueInfos extends TilePane {
     final Label motCourant;
     final Label score;
 
-    public VueInfos(Boggle boggle) {
+    public VueInfos(Presenter presenter) {
 
         motCourant = new Label();
         miseAjourMotCourant("");
@@ -17,8 +17,8 @@ public class VueInfos extends TilePane {
         miseAJourScore(0);
         getChildren().addAll(motCourant, score);
 
-        boggle.ajouterEcouterScore(this::miseAJourScore);
-        boggle.ajouterEcouterMot(this::miseAjourMotCourant);
+        presenter.ajouterEcouterScore(this::miseAJourScore);
+        presenter.ajouterEcouterMot(this::miseAjourMotCourant);
     }
 
     void miseAJourScore(Integer s) {
