@@ -13,14 +13,18 @@ public class Presenter {
 
     public final List<Runnable> ecouterRelance;
 
+    public final List<Runnable> ecouterMotFini;
+
     public final Boggle model;
 
     public Presenter(Boggle model) {
         this.ecouterScore = new ArrayList<>();
         this.ecouterMotCourant = new ArrayList<>();
         this.ecouterRelance = new ArrayList<>();
+        ecouterMotFini = new ArrayList<>();
         this.model = model;
         this.model.setPresenter(this);
+
     }
 
     public void notifierEcouterScore(int score) {
@@ -34,6 +38,13 @@ public class Presenter {
             e.run();
         }
     }
+
+    public void notifierEcouterMotFini() {
+        for (Runnable e : ecouterMotFini) {
+            e.run();
+        }
+    }
+
 
     public void notifierEcoutersMotCourant(String mot) {
         for (Consumer<String> e : ecouterMotCourant) {
@@ -52,6 +63,10 @@ public class Presenter {
 
     public void ajouterEcouterRelance(Runnable o) {
         ecouterRelance.add(o);
+    }
+
+    public void ajouterEcouterMotFini(Runnable o) {
+        ecouterMotFini.add(o);
     }
 
     public void ajouterLettreDuBouton(BoutonBoggle boutonBoggle) {
@@ -73,4 +88,6 @@ public class Presenter {
     public void relancer() {
         this.model.relancer();
     }
+
+
 }

@@ -14,7 +14,7 @@ public class PanneauControle extends VBox {
         });
         Button effacer = new Button("Effacer");
         effacer.setOnAction(e -> presenter.effacer());
-        Button relancer = new Button("relancer");
+        Button relancer = new Button("Relancer");
         relancer.setOnAction(e -> presenter.relancer());
         Button quitter = new Button("Quitter");
         quitter.setOnAction(e -> Platform.exit());

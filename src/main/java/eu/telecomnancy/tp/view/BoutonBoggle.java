@@ -14,11 +14,17 @@ public class BoutonBoggle extends Button {
         this.colomne = colomne;
         this.presenter = presenter;
         miseAJourTexte();
-        setOnAction(e -> this.presenter.ajouterLettreDuBouton(this));
+        setOnAction(e -> {
+            this.presenter.ajouterLettreDuBouton(this);
+            this.setDisable(true);
+        });
         presenter.ajouterEcouterRelance(this::miseAJourTexte);
+        presenter.ajouterEcouterMotFini(() -> setDisable(false));
+        setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
     }
 
     public void miseAJourTexte() {
         this.setText(String.valueOf(presenter.getLettre(this)));
+        this.setDisable(false);
     }
 }

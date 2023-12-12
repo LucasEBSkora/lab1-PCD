@@ -46,8 +46,12 @@ public class Boggle {
         this.ligneChoisie = -1;
         this.colonneChoisie = -1;
         this.score = 0;
-        if (presenter != null)
+        if (presenter != null) {
             presenter.notifierEcouterRelance();
+            presenter.notifierEcoutersMotCourant("");
+            presenter.notifierEcouterScore(0);
+            presenter.notifierEcouterMotFini();
+        }
     }
 
     /**
@@ -114,6 +118,7 @@ public class Boggle {
         this.ligneChoisie = -1;
         this.colonneChoisie = -1;
         presenter.notifierEcouterScore(this.score);
+        presenter.notifierEcouterMotFini();
     }
 
 
@@ -125,6 +130,7 @@ public class Boggle {
         this.ligneChoisie = -1;
         this.colonneChoisie = -1;
         presenter.notifierEcoutersMotCourant("");
+        presenter.notifierEcouterMotFini();
     }
 
     /**

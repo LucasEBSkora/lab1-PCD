@@ -29,7 +29,7 @@ public class Main extends Application {
         root.setRight(panneauControle);
         MenuBoggle menu = new MenuBoggle();
         root.setTop(menu);
-        Scene scene = new Scene(root, 320, 240);
+        Scene scene = new Scene(root, 400, 300);
         stage.setTitle("Boggle");
         stage.setScene(scene);
         stage.show();
