@@ -15,8 +15,9 @@ public class BoutonBoggle extends Button {
         this.presenter = presenter;
         miseAJourTexte();
         setOnAction(e -> {
-            this.presenter.ajouterLettreDuBouton(this);
-            this.setDisable(true);
+            if (this.presenter.ajouterLettreDuBouton(this)) {
+                this.setDisable(true);
+            }
         });
         presenter.ajouterEcouterRelance(this::miseAJourTexte);
         presenter.ajouterEcouterMotFini(() -> setDisable(false));

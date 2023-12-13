@@ -69,8 +69,8 @@ public class Presenter {
         ecouterMotFini.add(o);
     }
 
-    public void ajouterLettreDuBouton(BoutonBoggle boutonBoggle) {
-        model.ajouterLettre(boutonBoggle.ligne, boutonBoggle.colomne);
+    public boolean ajouterLettreDuBouton(BoutonBoggle boutonBoggle) {
+        return model.ajouterLettre(boutonBoggle.ligne, boutonBoggle.colomne);
     }
 
     public char getLettre(BoutonBoggle boutonBoggle) {

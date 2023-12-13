@@ -139,13 +139,16 @@ public class Boggle {
      *
      * @param lig ligne choisie
      * @param col colomne choisie
+     * @return true si la lettre a vraiment êté ajouté
      */
-    public void ajouterLettre(int lig, int col) {
+    public boolean ajouterLettre(int lig, int col) {
         if (this.ligneChoisie == -1 || casesContigues(this.ligneChoisie, this.colonneChoisie, lig, col)) {
             this.mot.append(this.getLettre(lig, col));
             this.ligneChoisie = lig;
             this.colonneChoisie = col;
             presenter.notifierEcoutersMotCourant(this.getMotChoisi());
+            return true;
         }
+        return false;
     }
 }

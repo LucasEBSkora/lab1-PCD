@@ -51,3 +51,9 @@ jlink {
 jlinkZip {
   group = 'distribution'
 }
+
+jar {
+  manifest {
+    attributes 'Main-Class': 'eu.telecomnancy.tp.Main'
+  }
+}
